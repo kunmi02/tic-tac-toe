@@ -1,23 +1,24 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # welcome message
 def welcome_message
-puts <<-HEREDOC
-*****--welcome to Azeez and Helcio tic tac toe--*****
-     press any key to start the game and have fun!
-HEREDOC
+  puts <<~HEREDOC
+    *****--welcome to Azeez and Helcio tic tac toe--*****
+         press any key to start the game and have fun!
+  HEREDOC
 end
 
 # player name
 def player_names
-    players = []
-    puts "player one name?"
-    players[0] = gets.chomp
+  players = []
+  puts 'player one name?'
+  players[0] = gets.chomp
 
-    puts "player two name?"
-    players[1] = gets.chomp
+  puts 'player two name?'
+  players[1] = gets.chomp
 
-    players
+  players
 end
 
 # def user_input()
@@ -26,50 +27,44 @@ end
 
 # border display
 def display_border(names)
+  p "#{names[0]} choose a valid number between 1 and 9!"
 
-p "#{names[0]} choose a valid number between 1 and 9!"
+  p ''
 
-p ""
-
-    puts <<-HEREDOC
-        1 | 2 | 3 
-     ---------------
-        4 | 5 | 6
-     ---------------
-        7 | 8 | 9
-    HEREDOC
+  puts <<-HEREDOC
+    1 | 2 | 3
+  ---------------
+    4 | 5 | 6
+  ---------------
+    7 | 8 | 9
+  HEREDOC
 end
 
 def user_input
-    p "choose a number between 1 and 9"
-    user_in = gets.chomp.to_i
-    user_in
+  p 'choose a number between 1 and 9'
+  gets.chomp.to_i
 end
 
 def check_user_input(user_input)
-    if !user_input.between?(1,9)
-        p 'please choose a valid number between 1 9 '
-        user_input
-    else
-        p 'you have printed a valid number'
-    end
+  if !user_input.between?(1, 9)
+    p 'please choose a valid number between 1 9 '
+    user_input
+  else
+    p 'you have printed a valid number'
+  end
 end
 
- 
 # players symbols
 def players_symbols(players)
-    puts <<-HEREDOC
-#{players[0]} symbol is X and #{players[1]} is O
-
-HEREDOC
+  puts <<~HEREDOC
+    #{players[0]} symbol is X and #{players[1]} is O
+  HEREDOC
 end
 
 welcome_message
-key = gets 
+key = gets
 
-if key 
-  names = player_names 
-end
+names = player_names if key
 
 players_symbols(names)
 
