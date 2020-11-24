@@ -7,7 +7,7 @@
 # HEREDOC
 # end
 
-# def player_names 
+# def player_names
 #     players = []
 #     puts "player one name?"
 #     player[0] = get.chomp
@@ -21,8 +21,8 @@
 # welcome_message()
 # player_names()
 
-    def hello
-        p 'hello world'
-    end
+def hello
+  p 'hello world'
+end
 
-    hello
+hello
