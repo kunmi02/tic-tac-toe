@@ -20,6 +20,10 @@ def player_names
     players
 end
 
+# def user_input()
+
+# end
+
 # border display
 def display_border(names)
 
@@ -34,8 +38,21 @@ p ""
      ---------------
         7 | 8 | 9
     HEREDOC
+end
 
-    
+def user_input
+    p "choose a number between 1 and 9"
+    user_in = gets.chomp.to_i
+    user_in
+end
+
+def check_user_input(user_input)
+    if !user_input.between?(1,9)
+        p 'please choose a valid number between 1 9 '
+        user_input
+    else
+        p 'you have printed a valid number'
+    end
 end
 
  
@@ -56,6 +73,6 @@ end
 
 players_symbols(names)
 
-
-
 display_border(names)
+
+check_user_input(user_input)
