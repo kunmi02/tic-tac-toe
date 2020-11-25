@@ -50,6 +50,7 @@ def check_user_input(user_input)
     user_input
   else
     p 'you have printed a valid number'
+    user_input
   end
 end
 
@@ -58,6 +59,14 @@ def players_symbols(players)
   puts <<~HEREDOC
     #{players[0]} symbol is X and #{players[1]} is O
   HEREDOC
+end
+
+def check_empty_cell(row, column)
+    if play[row][column] != 'x' && play[row][column] != 'o'
+        play[first_d][second_d] = i.even? ? 'x' : 'o'
+    else
+        p "This section is already filled"
+    end 
 end
 
 welcome_message
@@ -70,3 +79,41 @@ players_symbols(names)
 display_border(names)
 
 check_user_input(user_input)
+play = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+gameover = false
+until gameover
+puts '   1 2 3 '
+puts '  -------'
+puts "a |#{play[0][0]}|#{play[0][1]}|#{play[0][2]}|"
+puts '  -------'
+puts "b |#{play[1][0]}|#{play[1][1]}|#{play[1][2]}|"
+puts '  -------'
+puts "c |#{play[2][0]}|#{play[2][1]}|#{play[2][2]}|"
+puts '  -------'
+puts
+
+input = gets.chomp
+case input
+when "1"
+    check_empty_cell(0, 0)
+when "2"
+    check_empty_cell(0, 1)
+when "3"
+    check_empty_cell(0, 2)
+when "4"
+    check_empty_cell(1, 0)
+when "5"
+    check_empty_cell(1, 1)
+when "6"
+    check_empty_cell(1, 2)
+when "7"
+    check_empty_cell(2, 0)
+when "8"
+    check_empty_cell(2, 1)
+when "9"
+    check_empty_cell(2, 2)
+else
+    p "Please enter a valid input between 1-9"
+end
+
+end
