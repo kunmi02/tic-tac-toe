@@ -20,11 +20,6 @@ def player_names
   players
 end
 
-# def user_input()
-
-# end
-
-# border display
 def display_board
   p "player should choose a valid number between 1 and 9!"
 
@@ -37,8 +32,8 @@ def display_board
   HEREDOC
 end
 
-def player_turn(names)
-  p "#{names[0]} please choose a position on the board"
+def player_turn(player_name)
+  p "#{player_name} please choose a position on the board"
   position = gets.chomp.to_i
   position
 end
@@ -74,71 +69,28 @@ names = player_names if key
 players_symbols(names)
 
 display_board
-invalid = true
-position = player_turn(names)
-position_validator = check_user_play_position(position)
 
-while invalid == true
-  
-    # display_board
-  if position_validator
-    display_board
-    p 'player two turn'
-    invalid = false
-  else
-    position = player_turn(names)
-    position_validator = check_user_play_position(position)
+
+game_on = true
+i = 0
+while game_on
+
+  if i != 9
+    puts "Player #{names[i % 2]} turn"
+    input = gets.chomp.to_i
   end
+
+  if !input.nil?
+    p 'User input taken'
+    validate = check_user_play_position(input)
+    if validate
+    game_on = false if i == 9
+    i += 1
+    else
+      p 'enter a valid input please'
+    end
+  else
+    p 'input must not be empty'
+  end
+
 end
-
-
-
-# puts position
-# validate = check_user_play_position(position)
-# if !validate
-#   check_user_play_position(position)
-# else
-#   p 'player 2 turn'
-# end
-
-#### validate user input ###
-# validate = true
-# while validate == true
-#   check = check_user_play_position(position)
-#   if check
-#     puts 'tHIS CHEKS IN VALID'
-#     p check
-#     validate = false
-#   end
-# end
-
-# more = true
-# while more==true
-#Taking marks from user for marks
-  # puts "Enter you name"
-  # name = gets.chomp
-  # puts "Maths marks"
-  # maths_marks = gets.chomp.to_i
-  # puts "Science marks"
-  # science_marks = gets.chomp.to_i
-  # puts "English marks"
-  # english_marks = gets.chomp.to_i
-  # puts "Computer marks"
-  # comupter_marks = gets.chomp.to_i
-  # total = maths_marks+science_marks+english_marks+comupter_marks
-  # # using 400.0 to get faction value else if total will be less than 400(and mostly it will be) then it will be 0
-  # percentage = (total/400.0)*100
-  # puts "#{name} your total marks is #{total} and your percentage is #{percentage}"
-
-  # #User have to enter y if he want to run it again
-  # puts "Want to enter more y/n"
-  # a = gets.chomp
-#   check = check_user_play_position(position)
-#   if check != true
-#     p 'this is not check'
-#     #if user enters other than 'y' then making 'more' to 'False' to stop the loop. As condition in while will not be satisfied then
-#     more = false
-#   else
-#     p 'this is checked'
-#   end
-# end
