@@ -21,7 +21,7 @@ def player_names
 end
 
 def display_board
-  p "player should choose a valid number between 1 and 9!"
+  p 'player should choose a valid number between 1 and 9!'
 
   puts <<-HEREDOC
     1 | 2 | 3
@@ -38,7 +38,6 @@ def player_turn(player_name)
   position
 end
 
-
 def user_input
   p 'choose a number between 1 and 9'
   gets.chomp.to_i
@@ -52,11 +51,8 @@ def players_symbols(players)
 end
 
 def check_user_play_position(user_input)
-  if !user_input.between?(1, 9)
-    return false
-  else
-    return true
-  end
+  return false if !user_input.between?(1, 9)
+  true
 end
 
 
@@ -69,7 +65,6 @@ names = player_names if key
 players_symbols(names)
 
 display_board
-
 
 game_on = true
 i = 0
