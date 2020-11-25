@@ -55,7 +55,6 @@ def check_user_play_position(user_input)
   true
 end
 
-
 ##### start game #####
 welcome_message
 key = gets
@@ -79,7 +78,7 @@ while game_on
     p 'User input taken'
     validate = check_user_play_position(input)
     if validate
-    game_on = false if i == 9
+  game_on = false if i == 9
     i += 1
     else
       p 'enter a valid input please'
