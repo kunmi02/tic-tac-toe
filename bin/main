@@ -25,7 +25,7 @@ end
 # end
 
 # border display
-def display_border
+def display_board
   p "player should choose a valid number between 1 and 9!"
 
   puts <<-HEREDOC
@@ -58,10 +58,8 @@ end
 
 def check_user_play_position(user_input)
   if !user_input.between?(1, 9)
-    p 'please choose a valid number between 1-9 '
     return false
   else
-    p 'you have printed a valid number'
     return true
   end
 end
@@ -75,8 +73,26 @@ names = player_names if key
 
 players_symbols(names)
 
-display_border
+display_board
+invalid = true
 position = player_turn(names)
+position_validator = check_user_play_position(position)
+
+while invalid == true
+  
+    # display_board
+  if position_validator
+    display_board
+    p 'player two turn'
+    invalid = false
+  else
+    position = player_turn(names)
+    position_validator = check_user_play_position(position)
+  end
+end
+
+
+
 # puts position
 # validate = check_user_play_position(position)
 # if !validate
@@ -96,8 +112,8 @@ position = player_turn(names)
 #   end
 # end
 
-more = true
-while more==true
+# more = true
+# while more==true
 #Taking marks from user for marks
   # puts "Enter you name"
   # name = gets.chomp
@@ -117,12 +133,12 @@ while more==true
   # #User have to enter y if he want to run it again
   # puts "Want to enter more y/n"
   # a = gets.chomp
-  check = check_user_play_position(position)
-  if check != true
-    p 'this is not check'
-    #if user enters other than 'y' then making 'more' to 'False' to stop the loop. As condition in while will not be satisfied then
-    more = false
-  else
-    p 'this is checked'
-  end
-end
+#   check = check_user_play_position(position)
+#   if check != true
+#     p 'this is not check'
+#     #if user enters other than 'y' then making 'more' to 'False' to stop the loop. As condition in while will not be satisfied then
+#     more = false
+#   else
+#     p 'this is checked'
+#   end
+# end
