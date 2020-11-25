@@ -51,7 +51,7 @@ def players_symbols(players)
 end
 
 def check_user_play_position(user_input)
-  return false if !user_input.between?(1, 9)
+  return false unless user_input.between?(1, 9)
 
   true
 end
