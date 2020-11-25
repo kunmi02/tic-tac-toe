@@ -47,11 +47,10 @@ end
 def check_user_input(user_input)
   if !user_input.between?(1, 9)
     p 'please choose a valid number between 1 9 '
-    user_input
   else
     p 'you have printed a valid number'
-    user_input
   end
+  user_input
 end
 
 # players symbols
@@ -63,9 +62,9 @@ end
 
 def check_empty_cell(row, column)
   if play[row][column] != 'x' && play[row][column] != 'o'
-  play[row][column] = i.even? ? 'x' : 'o'
+    play[row][column] = i.even? ? 'x' : 'o'
   else
-  p 'This section is already filled'
+    p 'This section is already filled'
   end
 end
 
