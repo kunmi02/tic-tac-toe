@@ -112,7 +112,7 @@ until gameover
   when '9'
     check_empty_cell(2, 2)
   else
-      p 'Please enter a valid input between 1-9'
+    p 'Please enter a valid input between 1-9'
   end
 
 end
