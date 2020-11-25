@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+# rubocop:disable Metrics/BlockNesting
 # welcome message
 def welcome_message
   puts <<~HEREDOC
@@ -52,6 +52,7 @@ end
 
 def check_user_play_position(user_input)
   return false if !user_input.between?(1, 9)
+
   true
 end
 
@@ -78,8 +79,9 @@ while game_on
     p 'User input taken'
     validate = check_user_play_position(input)
     if validate
-  game_on = false if i == 9
-    i += 1
+      puts
+      game_on = false if i == 9
+      i += 1
     else
       p 'enter a valid input please'
     end
@@ -88,3 +90,5 @@ while game_on
   end
 
 end
+
+# rubocop:enable Metrics/BlockNesting
