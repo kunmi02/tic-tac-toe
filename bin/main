@@ -78,9 +78,22 @@ while game_on
   if !input.nil?
     p 'User input taken'
     validate = check_user_play_position(input)
+
     if validate
       puts
-      game_on = false if i == 9
+      if i == 5 
+        p "Player #{names[0]} won !"
+        game_on = false
+      elsif i == 6
+        p "Player #{names[1]} won !"
+        game_on = false
+      else
+        if i == 9
+          p 'The game is a tie'
+          game_on = false
+        end
+      end
+      
       i += 1
     else
       p 'enter a valid input please'
