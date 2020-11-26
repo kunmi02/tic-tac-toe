@@ -56,6 +56,22 @@ def check_user_play_position(user_input)
   true
 end
 
+def game_result(counter, names)
+  if counter == 5
+    p "Player #{names[0]} won !"
+    return false
+  elsif counter == 6
+    p "Player #{names[1]} won !"
+    return false
+  elsif counter == 9
+    p 'The game is a tie'
+    return false
+  else
+    return true
+  end
+
+end
+
 ##### start game #####
 welcome_message
 key = gets
@@ -81,19 +97,7 @@ while game_on
 
     if validate
       puts
-      if i == 5
-        p "Player #{names[0]} won !"
-        game_on = false
-      elsif i == 6
-        p "Player #{names[1]} won !"
-        game_on = false
-      elsif i == 9
-        p 'The game is a tie'
-        game_on = false
-      else
-        puts
-      end
-    end 
+      game_on = game_result(i, names)
       i += 1
     else
       p 'enter a valid input please'
