@@ -8,14 +8,24 @@ def welcome_message
   HEREDOC
 end
 
+def validate_name(name)
+  while name.strip == ''
+    p 'please add a valid name'
+    name = gets.chomp
+  end
+  name
+end
+
 # player name
 def player_names
   players = []
   puts 'player one name?'
   players[0] = gets.chomp
+  players[0] = validate_name(players[0])
 
   puts 'player two name?'
   players[1] = gets.chomp
+  players[1] = validate_name(players[1])
 
   players
 end
