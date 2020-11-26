@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# rubocop:disable Metrics/BlockNesting, Metrics/MethodLength
+# rubocop:disable Metrics/BlockNesting
 # welcome message
 def welcome_message
   puts <<~HEREDOC
@@ -92,7 +92,7 @@ names = player_names if key
 
 players_symbols(names)
 
-display_board
+# display_board
 
 game_on = true
 i = 0
@@ -156,4 +156,4 @@ while game_on
 
 end
 
-# rubocop:disable Metrics/BlockNesting, Metrics/MethodLength
+# rubocop:enable Metrics/BlockNesting
