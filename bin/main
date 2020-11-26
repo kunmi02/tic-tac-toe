@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-# rubocop:disable Metrics/BlockNesting
+# rubocop:disable Metrics/MethodLength
+
 # welcome message
 def welcome_message
   puts <<~HEREDOC
@@ -34,8 +35,7 @@ end
 
 def player_turn(player_name)
   p "#{player_name} please choose a position on the board"
-  position = gets.chomp.to_i
-  position
+  gets.chomp.to_i
 end
 
 def user_input
@@ -57,19 +57,19 @@ def check_user_play_position(user_input)
 end
 
 def game_result(counter, names)
-  if counter == 5
+  case counter
+  when 5
     p "Player #{names[0]} won !"
-    return false
-  elsif counter == 6
+    false
+  when 6
     p "Player #{names[1]} won !"
-    return false
-  elsif counter == 9
+    false
+  when 9
     p 'The game is a tie'
-    return false
+    false
   else
-    return true
+    true
   end
-
 end
 
 ##### start game #####
@@ -108,4 +108,4 @@ while game_on
 
 end
 
-# rubocop:enable Metrics/BlockNesting
+# rubocop:enable Metrics/MethodLength
