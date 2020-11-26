@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# rubocop:disable Metrics/MethodLength
 
 # welcome message
 def welcome_message
@@ -107,5 +106,3 @@ while game_on
   end
 
 end
-
-# rubocop:enable Metrics/MethodLength
