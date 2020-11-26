@@ -20,6 +20,16 @@ def player_names
   players
 end
 
+def display_position_chosen
+puts <<-HEREDOC
+    1 | 2 | 3
+  ---------------
+    4 | 5 | 6
+  ---------------
+    7 | 8 | 9
+HEREDOC
+end
+
 def display_board
   p 'player should choose a valid number between 1 and 9!'
 
@@ -58,13 +68,16 @@ end
 def game_result(counter, names)
   case counter
   when 5
-    p "Player #{names[0]} won !"
+    p 'Congratulations'
+    p "Player #{names[0]} is the winner !"
     false
   when 6
-    p "Player #{names[1]} won !"
+    p 'Congratulations'
+    p "Player #{names[1]} is the winner !"
     false
   when 9
     p 'The game is a tie'
+    p 'press p to play again or c to cancel'
     false
   else
     true
@@ -98,8 +111,9 @@ while game_on
       puts
       game_on = game_result(i, names)
       i += 1
+      display_position_chosen
     else
-      p 'enter a valid input please'
+      p 'enter a valid position number please'
     end
   else
     p 'input must not be empty'
