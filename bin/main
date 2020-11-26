@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+# rubocop:disable Metrics/BlockNesting, Metrics/MethodLength
 # welcome message
 def welcome_message
   puts <<~HEREDOC
@@ -18,16 +18,6 @@ def player_names
   players[1] = gets.chomp
 
   players
-end
-
-def display_position_chosen
-puts <<-HEREDOC
-    1 | 2 | 3
-  ---------------
-    4 | 5 | 6
-  ---------------
-    7 | 8 | 9
-HEREDOC
 end
 
 def display_board
@@ -96,7 +86,17 @@ display_board
 
 game_on = true
 i = 0
+play = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 while game_on
+  puts '   1 2 3 '
+  puts '  -------'
+  puts "a |#{play[0][0]}|#{play[0][1]}|#{play[0][2]}|"
+  puts '  -------'
+  puts "b |#{play[1][0]}|#{play[1][1]}|#{play[1][2]}|"
+  puts '  -------'
+  puts "c |#{play[2][0]}|#{play[2][1]}|#{play[2][2]}|"
+  puts '  -------'
+  puts
 
   if i != 9
     puts "Player #{names[i % 2]} turn"
@@ -108,10 +108,35 @@ while game_on
     validate = check_user_play_position(input)
 
     if validate
+      player_sign = if i.even?
+                      'X'
+                    else
+                      'O'
+                    end
       puts
       game_on = game_result(i, names)
       i += 1
-      display_position_chosen
+      case input
+      when 1
+        play[0][0] << player_sign
+      when 2
+        play[0][1] << player_sign
+      when 3
+        play[0][2] << player_sign
+      when 4
+        play[1][0] << player_sign
+      when 5
+        play[1][1] << player_sign
+      when 6
+        play[1][2] << player_sign
+      when 7
+        play[2][0] << player_sign
+      when 8
+        play[2][1] << player_sign
+      else
+        play[2][2] << player_sign
+      end
+
     else
       p 'enter a valid position number please'
     end
@@ -120,3 +145,5 @@ while game_on
   end
 
 end
+
+# rubocop:disable Metrics/BlockNesting, Metrics/MethodLength
