@@ -90,6 +90,8 @@ while game_on
       elsif i == 9
         p 'The game is a tie'
         game_on = false
+      else
+        puts
       end
     end 
       i += 1
