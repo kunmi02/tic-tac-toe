@@ -3,25 +3,28 @@
 
 class UserInterface
 
-
-end
-# welcome message
-def welcome_message
-  puts <<~HEREDOC
-    *****--welcome to Azeez and Helcio tic tac toe--*****
-         press any key to start the game and have fun!
-  HEREDOC
-end
-
-def validate_name(name)
-  while name.strip == ''
-    p 'please add a valid name'
-    name = gets.chomp
+  def  initialize(player_1, player_2)
+    @player_1 = player_1
+    @player_2 = player_2
   end
-  name
-end
 
-# player name
+  # welcome message
+  def welcome_message
+    puts <<~HEREDOC
+      *****--welcome to Azeez and Helcio tic tac toe--*****
+           press any key to start the game and have fun!
+    HEREDOC
+  end
+
+  def validate_name(name)
+    while name.strip == ''
+      p 'please add a valid name'
+      name = gets.chomp
+    end
+    name
+  end
+
+  # player name
 def player_names
   players = []
   puts 'player one name?'
@@ -74,6 +77,7 @@ def players_symbols(players)
   HEREDOC
 end
 
+
 def check_user_play_position(user_input)
   return false unless user_input.between?(1, 9)
 
@@ -99,15 +103,21 @@ def game_result(counter, names)
   end
 end
 
+end
+
 ##### start game #####
-welcome_message
+
+user_interface = UserInterface.new('saa', 'dddd')
+user_interface.welcome_message
 key = gets
 
-names = player_names if key
+names = user_interface.player_names if key
 
-players_symbols(names)
+user_interface.players_symbols(names)
 
 # display_board
+
+private_methods
 
 game_on = true
 i = 0
@@ -129,7 +139,7 @@ while game_on
 
   if !input.nil?
     p 'User input taken'
-    validate = check_user_play_position(input)
+    validate = user_interface.check_user_play_position(input)
 
     if validate
       player_sign = if i.even?
@@ -138,7 +148,7 @@ while game_on
                       'O'
                     end
       puts
-      game_on = game_result(i, names)
+      game_on = user_interface.game_result(i, names)
       i += 1
       case input
       when 1
