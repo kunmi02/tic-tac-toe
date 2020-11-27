@@ -13,8 +13,8 @@
 
 <!-- This project is based on the . -->
 
-This repository is a tic-tac-toe game. The main goal is to practice object oriented programming. OOP concepts like classes and object scopes.
-It’s a game, played on a 3x3 grid, where two players take turns claiming cells on the grid using their symbol (traditionally using an ‘x’ for one player and an ‘o’ for the other) in an attempt to be the first player to mark three adjacent cells . The group of three cells can be either all in the same row, all in the same column, or along either of the two principal diagonals of the grid. The game ends when the first player successfully marks three adjacent cells (in which case that player is the winner), or when all cells have been claimed and no valid moves remain (in which case the game results in a tie, or draw).
+<p>This repository is a tic-tac-toe game. The main goal is to practice object oriented programming. OOP concepts like classes and object scopes.</p>
+Tic Tac Toe is a game, played on a 3x3 grid, where two players take turns claiming cells on the grid using their symbol (traditionally using an ‘x’ for one player and an ‘o’ for the other) in an attempt to be the first player to mark three adjacent cells . The group of three cells can be either all in the same row, all in the same column, or along either of the two principal diagonals of the grid. The game ends when the first player successfully marks three adjacent cells (in which case that player is the winner), or when all cells have been claimed and no valid moves remain (in which case the game results in a tie, or draw).
 
 
 ## Milestones for this project were
