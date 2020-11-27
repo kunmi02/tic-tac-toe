@@ -8,16 +8,36 @@ def welcome_message
   HEREDOC
 end
 
+def validate_name(name)
+  while name.strip == ''
+    p 'please add a valid name'
+    name = gets.chomp
+  end
+  name
+end
+
 # player name
 def player_names
   players = []
   puts 'player one name?'
   players[0] = gets.chomp
+  players[0] = validate_name(players[0])
 
   puts 'player two name?'
   players[1] = gets.chomp
+  players[1] = validate_name(players[1])
 
   players
+end
+
+def display_position_chosen
+  puts <<-HEREDOC
+    1 | 2 | 3
+  ---------------
+    4 | 5 | 6
+  ---------------
+    7 | 8 | 9
+  HEREDOC
 end
 
 def display_board
@@ -34,8 +54,7 @@ end
 
 def player_turn(player_name)
   p "#{player_name} please choose a position on the board"
-  position = gets.chomp.to_i
-  position
+  gets.chomp.to_i
 end
 
 def user_input
@@ -56,6 +75,25 @@ def check_user_play_position(user_input)
   true
 end
 
+def game_result(counter, names)
+  case counter
+  when 5
+    p 'Congratulations'
+    p "Player #{names[0]} is the winner !"
+    false
+  when 6
+    p 'Congratulations'
+    p "Player #{names[1]} is the winner !"
+    false
+  when 9
+    p 'The game is a tie'
+    p 'press p to play again or c to cancel'
+    false
+  else
+    true
+  end
+end
+
 ##### start game #####
 welcome_message
 key = gets
@@ -64,11 +102,20 @@ names = player_names if key
 
 players_symbols(names)
 
-display_board
+# display_board
 
 game_on = true
 i = 0
+play = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 while game_on
+  puts '  -------'
+  puts " |#{play[0][0]}|#{play[0][1]}|#{play[0][2]}|"
+  puts '  -------'
+  puts " |#{play[1][0]}|#{play[1][1]}|#{play[1][2]}|"
+  puts '  -------'
+  puts " |#{play[2][0]}|#{play[2][1]}|#{play[2][2]}|"
+  puts '  -------'
+  puts
 
   if i != 9
     puts "Player #{names[i % 2]} turn"
@@ -78,12 +125,39 @@ while game_on
   if !input.nil?
     p 'User input taken'
     validate = check_user_play_position(input)
+
     if validate
+      player_sign = if i.even?
+                      'X'
+                    else
+                      'O'
+                    end
       puts
-      game_on = false if i == 9
+      game_on = game_result(i, names)
       i += 1
+      case input
+      when 1
+        play[0][0] = player_sign
+      when 2
+        play[0][1] = player_sign
+      when 3
+        play[0][2] = player_sign
+      when 4
+        play[1][0] = player_sign
+      when 5
+        play[1][1] = player_sign
+      when 6
+        play[1][2] = player_sign
+      when 7
+        play[2][0] = player_sign
+      when 8
+        play[2][1] = player_sign
+      else
+        play[2][2] = player_sign
+      end
+
     else
-      p 'enter a valid input please'
+      p 'enter a valid position number please'
     end
   else
     p 'input must not be empty'
