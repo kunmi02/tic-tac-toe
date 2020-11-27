@@ -24,18 +24,6 @@ Tic Tac Toe is a game, played on a 3x3 grid, where two players take turns claimi
 - OOP-Milestone: Game logic
 - OOP-Milestone: instruction for player
 
-## Table of Contents
-
-- [About the Project](#about-the-project)
-- [Built With](#built-with)
-- [Live Demo](#live-demo)
-- [Getting Started](#getting-started)
-- [Contributing](#contributing)
-- [Show your support](#show-your-support)
-- [License](#license)
-- [Authors](#authors)
-- [Acknowledgements](#acknowledgements)
-
 [![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
 
 
