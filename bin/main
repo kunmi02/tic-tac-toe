@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 # rubocop:disable Metrics/BlockNesting
+
+class UserInterface
+
+
+end
 # welcome message
 def welcome_message
   puts <<~HEREDOC
