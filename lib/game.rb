@@ -1,33 +1,31 @@
 class GameLogic
 
   def initialize
-    @board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+    @board = [['', '', ''], ['', '', ''], ['', '', '']]
   end
 
   def validate_input_position(input)
-    #check if the position is valid or not.
-    # perharps print availabe position
     case input
     when 1
-      @board[0][0].nil?
+      empty = @board[0][0].empty?
     when 2
-      @board[0][1].nil?
+      empty = @board[0][1].empty?
     when 3
-      @board[0][2].nil?
+      empty = @board[0][2].empty?
     when 4
-      @board[1][0].nil?
+      empty = @board[1][0].empty?
     when 5
-      @board[1][1].nil?
+      empty = @board[1][1].empty?
     when 6
-      @board[1][2].nil?
+      empty = @board[1][2].empty?
     when 7
-      @board[2][0].nil?
+      empty = @board[2][0].empty?
     when 8
-      @board[2][1].nil?
+      empty = @board[2][1].empty?
     else
-      @board[2][2].nil?
+      empty = @board[2][2].empty?
     end
-      # @board
+      empty
   end
 
   def insert_user_option_to_board(input, player_sign)
@@ -56,9 +54,6 @@ class GameLogic
   end
 
   def check_winner(player, player_symbol)
-    # check the board if there is the same symbol on the same row
-    # check if they are on the same column or diagonal
-    # return player name and true(to show which player wins)
     combinations = [
       [@board[0][0], @board[0][1], @board[0][2]],
       [@board[1][0], @board[1][1], @board[1][2]],
@@ -71,7 +66,7 @@ class GameLogic
       
     ]
     combinations.any? do |combo|
-      if combo.all?('x') 
+      if combo.all?('x') || combo.all?('o')
         return true
       end
     end
