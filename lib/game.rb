@@ -1,4 +1,3 @@
-#!/usr/bin/ruby
 # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
 # game logic
 class GameLogic

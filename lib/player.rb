@@ -1,5 +1,3 @@
-#!/usr/bin/ruby
-
 # player
 class Player
   attr_accessor :player_name, :symbol
