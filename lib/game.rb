@@ -1,4 +1,5 @@
-# rubocop:disable Metrics/BlockNesting, Metrics/ClassLength, Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
+# game logic
 class GameLogic
   def initialize
     @board = [['', '', ''], ['', '', ''], ['', '', '']]
@@ -69,4 +70,4 @@ class GameLogic
   end
 end
 
-# rubocop:enable Metrics/BlockNesting, Metrics/ClassLength, Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
