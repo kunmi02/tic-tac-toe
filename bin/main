@@ -1,3 +1,4 @@
+#!/usr/bin/ruby
 # rubocop:disable Metrics/BlockNesting, Metrics/ClassLength, Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 require_relative '../lib/player'
 require_relative '../lib/game'
@@ -107,13 +108,14 @@ class UserInterface
 
             board = @game.insert_user_option_to_board(input, player_sign)
             show_board(board)
-            winner = @game.check_winner((names[i % 2]), player_sign)
+            winner = @game.check_winner
             i += 1
             if winner
               p "Player #{names[(i % 2) - 1]} wins"
               game_on = false
             elsif i == 9
               p 'It is a tie!!'
+              game_on = false
             else
               game_on = true
             end

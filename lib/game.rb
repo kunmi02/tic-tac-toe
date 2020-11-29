@@ -1,3 +1,4 @@
+#!/usr/bin/ruby
 # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
 # game logic
 class GameLogic
@@ -52,7 +53,7 @@ class GameLogic
     @board
   end
 
-  def check_winner(_player, _player_symbol)
+  def check_winner
     combinations = [
       [@board[0][0], @board[0][1], @board[0][2]],
       [@board[1][0], @board[1][1], @board[1][2]],
@@ -65,7 +66,8 @@ class GameLogic
 
     ]
     combinations.any? do |combo|
-      return true if combo.all?('x') || combo.all?('o')
+      combo.all? { |i| i == 'x' } || combo.all? { |i| i == 'o' }
+      # return true if combo.all? || combo.all?
     end
   end
 end

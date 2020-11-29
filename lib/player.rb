@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+#!/usr/bin/ruby
 
 # player
 class Player
