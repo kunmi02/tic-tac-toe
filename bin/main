@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-# rubocop:disable Metrics/BlockNesting, Metrics/ClassLength, Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:disable Metrics/BlockNesting, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 require_relative '../lib/player'
 require_relative '../lib/game'
 class UserInterface
