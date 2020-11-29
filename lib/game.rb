@@ -66,7 +66,6 @@ class GameLogic
     ]
     combinations.any? do |combo|
       combo.all? { |i| i == 'x' } || combo.all? { |i| i == 'o' }
-      # return true if combo.all? || combo.all?
     end
   end
 end
