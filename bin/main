@@ -152,4 +152,4 @@ p '===GAME STARTS NOW==='
 
 user_interface.start_game(players)
 
-# rubocop:enable Metrics/BlockNesting, Metrics/ClassLength, Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:enable Metrics/BlockNesting, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
