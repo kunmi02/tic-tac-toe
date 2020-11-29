@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # rubocop:disable Metrics/BlockNesting, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 require_relative '../lib/player'
-require_relative '../lib/game'
+
 class UserInterface
   require_relative '../lib/game'
 
@@ -72,11 +72,11 @@ class UserInterface
 
   def show_board(board)
     puts '  -------'
-    puts " |#{board[0][0]}|#{board[0][1]}|#{board[0][2]}|"
+    puts " | #{board[0][0]} | #{board[0][1]} | #{board[0][2]} |"
     puts '  -------'
-    puts " |#{board[1][0]}|#{board[1][1]}|#{board[1][2]}|"
+    puts " | #{board[1][0]} | #{board[1][1]} | #{board[1][2]} |"
     puts '  -------'
-    puts " |#{board[2][0]}|#{board[2][1]}|#{board[2][2]}|"
+    puts " | #{board[2][0]} | #{board[2][1]} | #{board[2][2]} |"
     puts '  -------'
   end
 
@@ -97,7 +97,6 @@ class UserInterface
 
         if valid
           available_board_space = @game.validate_input_position(input)
-          p available_board_space
           if available_board_space
 
             player_sign = if i.even?
