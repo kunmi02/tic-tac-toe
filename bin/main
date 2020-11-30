@@ -1,168 +1,154 @@
 #!/usr/bin/env ruby
-# rubocop:disable Metrics/BlockNesting
-# welcome message
-def welcome_message
-  puts <<~HEREDOC
-    *****--welcome to Azeez and Helcio tic tac toe--*****
-         press any key to start the game and have fun!
-  HEREDOC
-end
+# rubocop:disable Metrics/BlockNesting, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+require_relative '../lib/player'
 
-def validate_name(name)
-  while name.strip == ''
-    p 'please add a valid name'
-    name = gets.chomp
+class UserInterface
+  require_relative '../lib/game'
+
+  def welcome_message
+    puts <<~HEREDOC
+      *****--welcome to Azeez and Helcio tic tac toe--*****
+           press any key to start the game and have fun!
+    HEREDOC
   end
-  name
-end
 
-# player name
-def player_names
-  players = []
-  puts 'player one name?'
-  players[0] = gets.chomp
-  players[0] = validate_name(players[0])
+  def player_names
+    game_players = Array.new(2)
+    invalid = true
+    while invalid
 
-  puts 'player two name?'
-  players[1] = gets.chomp
-  players[1] = validate_name(players[1])
+      (0..1).each do |i|
+        puts "Enter player#{i + 1} name"
+        game_players[i] = gets.chomp
+      end
 
-  players
-end
+      if game_players[0] == game_players[1]
+        p 'game_player names cant be same'
+        invalid = true
+      elsif game_players[0].empty? || game_players[1].empty?
+        p 'Player names cant be empty'
+        p 'Enter names again'
+        invalid = true
+      else
+        invalid = false
+      end
 
-def display_position_chosen
-  puts <<-HEREDOC
+    end
+    game_players
+  end
+
+  def validate_name(name)
+    while name.strip == ''
+      p 'please add a valid name'
+      name = gets.chomp
+    end
+    name
+  end
+
+  def display_board
+    p 'How to play'
+    p 'player should choose a valid number between 1 and 9!'
+
+    puts <<-HEREDOC
     1 | 2 | 3
   ---------------
     4 | 5 | 6
   ---------------
     7 | 8 | 9
-  HEREDOC
-end
+    HEREDOC
+  end
 
-def display_board
-  p 'player should choose a valid number between 1 and 9!'
+  def show_players_symbols(players)
+    puts <<~HEREDOC
+      #{players[0]} symbol is X and #{players[1]} is O
+    HEREDOC
+  end
 
-  puts <<-HEREDOC
-    1 | 2 | 3
-  ---------------
-    4 | 5 | 6
-  ---------------
-    7 | 8 | 9
-  HEREDOC
-end
+  def check_valid_option(user_input)
+    return false unless user_input.between?(1, 9)
 
-def player_turn(player_name)
-  p "#{player_name} please choose a position on the board"
-  gets.chomp.to_i
-end
-
-def user_input
-  p 'choose a number between 1 and 9'
-  gets.chomp.to_i
-end
-
-# players symbols
-def players_symbols(players)
-  puts <<~HEREDOC
-    #{players[0]} symbol is X and #{players[1]} is O
-  HEREDOC
-end
-
-def check_user_play_position(user_input)
-  return false unless user_input.between?(1, 9)
-
-  true
-end
-
-def game_result(counter, names)
-  case counter
-  when 5
-    p 'Congratulations'
-    p "Player #{names[0]} is the winner !"
-    false
-  when 6
-    p 'Congratulations'
-    p "Player #{names[1]} is the winner !"
-    false
-  when 9
-    p 'The game is a tie'
-    p 'press p to play again or c to cancel'
-    false
-  else
     true
+  end
+
+  def show_board(board)
+    puts '  -------'
+    puts " | #{board[0][0]} | #{board[0][1]} | #{board[0][2]} |"
+    puts '  -------'
+    puts " | #{board[1][0]} | #{board[1][1]} | #{board[1][2]} |"
+    puts '  -------'
+    puts " | #{board[2][0]} | #{board[2][1]} | #{board[2][2]} |"
+    puts '  -------'
+  end
+
+  def start_game(names)
+    @game = GameLogic.new
+    game_on = true
+    i = 0
+
+    while game_on
+
+      if i != 9
+        puts "Player #{names[i % 2]} turn"
+        input = gets.chomp.to_i
+      end
+      # check if input is not empty
+      if input != 0
+        valid = check_valid_option(input)
+
+        if valid
+          available_board_space = @game.validate_input_position(input)
+          if available_board_space
+
+            player_sign = if i.even?
+                            'x'
+                          else
+                            'o'
+                          end
+
+            board = @game.insert_user_option_to_board(input, player_sign)
+            show_board(board)
+            winner = @game.check_winner
+            i += 1
+            if winner
+              p "Player #{names[(i % 2) - 1]} wins"
+              game_on = false
+            elsif i == 9
+              p 'It is a tie!!'
+              game_on = false
+            else
+              game_on = true
+            end
+          else
+            p 'selected space is taken'
+            game_on = true
+          end
+        else
+          p 'enter a valid position number please'
+          game_on = true
+        end
+      else
+        p 'Invalid input'
+      end
+
+    end
   end
 end
 
 ##### start game #####
-welcome_message
+
+user_interface = UserInterface.new
+user_interface.welcome_message
 key = gets
+players = user_interface.player_names if key
 
-names = player_names if key
+p '====================='
+user_interface.show_players_symbols(players)
+p '====================='
+user_interface.display_board
+p '====================='
 
-players_symbols(names)
+p '===GAME STARTS NOW==='
 
-# display_board
+user_interface.start_game(players)
 
-game_on = true
-i = 0
-play = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
-while game_on
-  puts '  -------'
-  puts " |#{play[0][0]}|#{play[0][1]}|#{play[0][2]}|"
-  puts '  -------'
-  puts " |#{play[1][0]}|#{play[1][1]}|#{play[1][2]}|"
-  puts '  -------'
-  puts " |#{play[2][0]}|#{play[2][1]}|#{play[2][2]}|"
-  puts '  -------'
-  puts
-
-  if i != 9
-    puts "Player #{names[i % 2]} turn"
-    input = gets.chomp.to_i
-  end
-
-  if !input.nil?
-    p 'User input taken'
-    validate = check_user_play_position(input)
-
-    if validate
-      player_sign = if i.even?
-                      'X'
-                    else
-                      'O'
-                    end
-      puts
-      game_on = game_result(i, names)
-      i += 1
-      case input
-      when 1
-        play[0][0] = player_sign
-      when 2
-        play[0][1] = player_sign
-      when 3
-        play[0][2] = player_sign
-      when 4
-        play[1][0] = player_sign
-      when 5
-        play[1][1] = player_sign
-      when 6
-        play[1][2] = player_sign
-      when 7
-        play[2][0] = player_sign
-      when 8
-        play[2][1] = player_sign
-      else
-        play[2][2] = player_sign
-      end
-
-    else
-      p 'enter a valid position number please'
-    end
-  else
-    p 'input must not be empty'
-  end
-
-end
-
-# rubocop:enable Metrics/BlockNesting
+# rubocop:enable Metrics/BlockNesting, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
